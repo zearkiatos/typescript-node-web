@@ -25,5 +25,3 @@ jobs:
       run: npm run test
     - name: Build docker 🐳
       run: docker build . -t=typescript-node-web:github-b-$GITHUB_RUN_NUMBER
-    - name: Build
-      run: npm run build
