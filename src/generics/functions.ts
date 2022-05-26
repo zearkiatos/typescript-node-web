@@ -2,8 +2,10 @@ const printObject = (argument: any): void => {
   console.log(argument);
 };
 
-function genericFunction(argument: any): any {
+function genericFunction<T>(argument: T): T {
   return argument;
 }
 
-export { printObject, genericFunction };
+const genericArrowFunction = <T>(argument: T): T => argument;
+
+export { printObject, genericFunction, genericArrowFunction };
