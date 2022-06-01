@@ -1,4 +1,10 @@
-import { printObject, genericFunction, genericArrowFunction } from "../../src/generics/functions";
+import {
+  printObject,
+  genericFunction,
+  genericArrowFunction,
+} from "../../src/generics/functions";
+import Hero from "../../src/interfaces/Hero";
+import Villain from "../../src/interfaces/Villain";
 describe("Test suite for generics functions", () => {
   let consoleSpyOn: any;
 
@@ -19,7 +25,7 @@ describe("Test suite for generics functions", () => {
 
   test("Should get the argument", () => {
     const argument = "Hello World!";
-    const expectedResult:string = 'HELLO WORLD!'
+    const expectedResult: string = "HELLO WORLD!";
 
     const arg: string = genericFunction<string>(argument).toUpperCase();
 
@@ -30,7 +36,9 @@ describe("Test suite for generics functions", () => {
     const argument: number = 3.1416;
     const dataExpected: number = 3.14;
 
-    let result: number = parseFloat(genericFunction<number>(argument).toFixed(2));
+    let result: number = parseFloat(
+      genericFunction<number>(argument).toFixed(2)
+    );
 
     expect(dataExpected).toBe(result);
   });
@@ -39,8 +47,32 @@ describe("Test suite for generics functions", () => {
     const argument: Date = new Date();
     const dataExpected: number = new Date().getDate();
 
-    let today: number = genericArrowFunction<Date>(argument).getDate()
+    let today: number = genericArrowFunction<Date>(argument).getDate();
 
     expect(dataExpected).toBe(today);
+  });
+
+  test("Should execute a generic function basic in the interface Hero", () => {
+    const deadpool = {
+      name: "Deadpool",
+      realName: "Wade Winston Wilson",
+      dangerLevel: 130,
+    };
+
+    const result: Hero = genericArrowFunction<Hero>(deadpool);
+
+    expect(result).toEqual(deadpool);
+  });
+
+  test("Should execute a generic function basic in the interface Villain", () => {
+    const deadpool = {
+      name: "Deadpool",
+      realName: "Wade Winston Wilson",
+      dangerLevel: 130,
+    };
+
+    const result: Villain = genericArrowFunction<Villain>(deadpool);
+
+    expect(result).toEqual(deadpool);
   });
 });
