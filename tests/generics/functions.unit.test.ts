@@ -3,8 +3,7 @@ import {
   genericFunction,
   genericArrowFunction,
 } from "../../src/generics/functions";
-import Hero from "../../src/interfaces/Hero";
-import Villain from "../../src/interfaces/Villain";
+import { Villain, Hero } from "../../src/interfaces";
 describe("Test suite for generics functions", () => {
   let consoleSpyOn: any;
 
