@@ -21,6 +21,14 @@ jobs:
       run: echo "The build number $GITHUB_RUN_NUMBER 🏗"
     - name: Install dependencies
       run: npm install
+    - name: Create .env
+      run: |
+        touch .env &&
+        echo "ENVIRONMENT=${ENVIRONMENT}" > .env
+        echo "POKEAPI_BASE_URL=${POKEAPI_BASE_URL}" >> .env
+      env:
+        ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+        POKEAPI_BASE_URL: ${{ secrets.POKEAPI_BASE_URL }}
     - name: Test 🧪
       run: npm run test
     - name: Build docker 🐳

@@ -1,6 +1,6 @@
 interface Config {
-  ENVIRONMENT: string;
-  POKEAPI_BASE_URL: string;
+  ENVIRONMENT: string | undefined;
+  POKEAPI_BASE_URL: string | undefined;
 }
 
 export default Config;
