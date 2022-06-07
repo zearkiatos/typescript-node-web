@@ -2,7 +2,10 @@ import Pokemon from "../../src/decorators/Pokemon";
 import config from "../../src/config";
 
 describe("Suite test for Pokemon class for decorators", () => {
-  let logSpyOn: any = jest.spyOn(console, "log");
+  let logSpyOn: any;
+  beforeAll(() => {
+    logSpyOn = jest.spyOn(console, "log");
+  });
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -17,7 +20,9 @@ describe("Suite test for Pokemon class for decorators", () => {
       name: "Charmander",
       PUBLIC_API: config.POKEAPI_BASE_URL,
     };
-
+    
+    expect(logSpyOn).toHaveBeenCalled();
+    expect(logSpyOn).toHaveBeenCalledWith(expectedResult);
     expect(charmander).toBeDefined();
     expect(charmander).toBeInstanceOf(Pokemon);
   });
