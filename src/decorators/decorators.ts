@@ -10,4 +10,8 @@ const printToConsoleConditional = (print: boolean): Function => {
   }
 };
 
-export { printToConsole, printToConsoleConditional };
+const blockPrototype = (constructor: Function) => {
+  Object.seal(constructor);
+  Object.seal(constructor.prototype);
+};
+export { printToConsole, printToConsoleConditional, blockPrototype };
