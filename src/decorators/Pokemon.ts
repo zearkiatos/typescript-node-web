@@ -1,15 +1,5 @@
 import config from "../config";
-function printToConsole(constructor: Function) {
-  console.log(constructor);
-}
-
-const printToConsoleConditional = (print: boolean): Function => {
-  if (print) {
-    return printToConsole;
-  } else {
-    return () => {};
-  }
-};
+import { printToConsoleConditional } from "./decorators";
 
 @printToConsoleConditional(true)
 class Pokemon {
