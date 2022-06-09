@@ -31,7 +31,6 @@ const checkValidPokemonId = (): Function => {
 const readOnly = (isWritable: boolean = true): Function => {
   return function (target: any, propertyKey: string) {
     const descriptor: PropertyDescriptor = {
-      get() {},
       set(this, value) {
         Object.defineProperty(this, propertyKey, {
           value,
