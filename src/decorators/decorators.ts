@@ -15,7 +15,7 @@ const blockPrototype = (constructor: Function) => {
   Object.seal(constructor.prototype);
 };
 
-const checkValidPokemonId = () => {
+const checkValidPokemonId = (): Function => {
   return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     const originalMethod = descriptor.value;
     descriptor.value = (id: number) => {
@@ -27,9 +27,27 @@ const checkValidPokemonId = () => {
     };
   };
 };
+
+const readOnly = (isWritable: boolean = true): Function => {
+  return function (target: any, propertyKey: string) {
+    const descriptor: PropertyDescriptor = {
+      get() {},
+      set(this, value) {
+        Object.defineProperty(this, propertyKey, {
+          value,
+          writable: !isWritable,
+          enumerable: false,
+        });
+      },
+    };
+
+    return descriptor;
+  };
+};
 export {
   printToConsole,
   printToConsoleConditional,
   blockPrototype,
   checkValidPokemonId,
+  readOnly,
 };

@@ -51,4 +51,16 @@ describe("Suite test for Pokemon class for decorators", () => {
     expect(errorSpyOn).toHaveBeenCalled();
     expect(errorSpyOn).toHaveBeenCalledWith(expectedMessage);
   });
+
+  test("Should not edit the property PUBLIC_API", () => {
+    const charmander = new Pokemon("Charmander");
+    const expectedPublicApi: string | undefined = config.POKEAPI_BASE_URL;
+
+    const modifiedProperty = () => {
+      charmander.PUBLIC_API = 'https://pedrocapriles.io';
+    };
+
+    expect(modifiedProperty).toThrow();
+    expect(charmander.PUBLIC_API).toBe(expectedPublicApi);
+  });
 });
